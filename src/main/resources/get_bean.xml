@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="model.User" />
+
+    <!--测试spring中别名的特性，方便源码分析-->
+    <alias name="user" alias="userAlias"/>
+
+    <!--测试beanDefine合并的源码-->
+    <bean parent="user" id="user-child"/>
+
+    <bean id="userFactory" class="model.UserFactoryBean"/>
+</beans>
