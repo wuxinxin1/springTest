@@ -3,12 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-   <!-- <bean id="address" class="model.Address" scope="prototype"/>
+    <bean id="beanPostProcessorTest" class="bean.others.BeanPostProcessorTest" />
 
-    <bean id="student" class="model.Student">
-        <property name="address" ref="address"/>
-    </bean>-->
+    <bean id="beanPostProcessorTest1" class="bean.others.BeanPostProcessorTest" />
 
-    <bean id="factoryBean" class="bean.factory.FactoryBeanTest"/>
+    <bean id="user" class="model.User" init-method="initMethod"/>
+
+    <bean id="student" class="model.Student" init-method="initMethod"/>
 
 </beans>

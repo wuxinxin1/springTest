@@ -3,12 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-   <!-- <bean id="address" class="model.Address" scope="prototype"/>
+    <!--测试depend-on特性-->
+    <bean id="account" class="model.Account" depends-on="address"/>
 
-    <bean id="student" class="model.Student">
-        <property name="address" ref="address"/>
-    </bean>-->
-
-    <bean id="factoryBean" class="bean.factory.FactoryBeanTest"/>
-
+    <bean id="address" class="model.Address"/>
 </beans>

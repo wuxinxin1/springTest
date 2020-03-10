@@ -3,12 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-   <!-- <bean id="address" class="model.Address" scope="prototype"/>
+    <!--用于测试beandefine,也就是看普通bean有哪些定义体现在源码中-->
+    <bean id="account" name="account2" class="model.Account" scope="singleton" init-method="ini" lazy-init="true"
+          destroy-method="des">
 
-    <bean id="student" class="model.Student">
-        <property name="address" ref="address"/>
-    </bean>-->
-
-    <bean id="factoryBean" class="bean.factory.FactoryBeanTest"/>
-
+    </bean>
 </beans>

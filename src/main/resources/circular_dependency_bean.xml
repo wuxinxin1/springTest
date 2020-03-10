@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="father" class="model.Father">
+        <property name="mother" ref="mother"/>
+    </bean>
+
+    <bean id="mother" class="model.Mother">
+        <property name="father" ref="father"/>
+    </bean>
+
+
+    <!--depend 级别的循环依赖-->
+    <!--<bean id="father" class="model.Father" depends-on="mother"/>
+
+    <bean id="mother" class="model.Mother" depends-on="father"/>-->
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--用于测试beandefine,也就是看普通bean有哪些定义体现在源码中-->
+    <bean id="account" name="account2" class="model.Account" scope="singleton" init-method="ini" lazy-init="true"
+          destroy-method="des">
+
+    </bean>
+
+    <bean id="autoWare" class="model.AutoWareBean" autowire="byType"  init-method="init">
+        <constructor-arg name="p1" value="10"/>
+        <constructor-arg name="p2" value="qqqq"/>
+        <!--注释这行，测试自动注入循环依赖-->
+        <!--<constructor-arg name="account" ref="account"/>-->
+    </bean>
+
+
+
+    <bean id="account" class="model.Account"/>
+
+    <!--这里测试构造依赖注入问题-->
+    <!--<bean id="account" class="model.Account">
+        <constructor-arg name="autoWareBean" ref="autoWare"/>
+    </bean>-->
+
+    <bean id="welcome" class="model.Welcome" init-method="ini">
+        <property name="name" value="wxx"/>
+        <property name="id" value="111"/>
+    </bean>
+
+    <bean id="beanFactoryPostProcessor" class="bean.others.BeanFactoryPostProcessorTest"/>
+
+    <bean id="beanPostProcessor" class="bean.others.BeanPostProcessorTest" />
+
+
+    <bean id="father" class="model.Father">
+        <property name="mother" ref="mother"/>
+    </bean>
+
+    <bean id="mother" class="model.Mother">
+        <property name="father" ref="father"/>
+    </bean>
+
+
+    <!--depend 级别的循环依赖-->
+    <!--<bean id="father" class="model.Father" depends-on="mother"/>
+
+    <bean id="mother" class="model.Mother" depends-on="father"/>-->
+
+</beans>

@@ -19,7 +19,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  *    创建的具体过程
  *
- *    a.
+ *    a.解析bean的class类型，检查method overrides(lookup-method)是否存在方法重载,可以提前做好标记
+ *    b.调用doCreateBean方法去创建Bean
+ *      1.先从factoryBeanInstanceCache获取相关工厂  ？
+ *      2.创建一个原始的bean，创建方式有三种（工厂，构造，无参），具体使用哪一种，取决于你bean的定义 还没有对参数进行填充
+ *      3.为了解决循环依赖问题，而去做的一些操作，添加工厂对象到 singletonFactories 缓存中
+ *      4.对创建的bean进行填充属性，使用bean加载到的定义信息
+ *
+ *
+ *
+ *
  */
 public class CreateBeanTest {
 

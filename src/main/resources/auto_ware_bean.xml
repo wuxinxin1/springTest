@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="autoWare" class="model.AutoWareBean" autowire="byType"  init-method="init">
+        <constructor-arg name="p1" value="10"/>
+        <constructor-arg name="p2" value="qqqq"/>
+        <!--注释这行，测试自动注入循环依赖-->
+        <!--<constructor-arg name="account" ref="account"/>-->
+    </bean>
+
+
+
+    <bean id="account" class="model.Account"/>
+
+    <!--这里测试构造依赖注入问题-->
+    <!--<bean id="account" class="model.Account">
+        <constructor-arg name="autoWareBean" ref="autoWare"/>
+    </bean>-->
+
+</beans>

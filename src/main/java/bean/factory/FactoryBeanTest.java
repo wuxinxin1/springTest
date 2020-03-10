@@ -30,6 +30,7 @@ public class FactoryBeanTest implements FactoryBean<Student> {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("factory_bean.xml");
 
         System.out.println(classPathXmlApplicationContext.getBean("factoryBean"));
+       /* System.out.println(classPathXmlApplicationContext.getBean("factoryBean"));
 
         System.out.println(classPathXmlApplicationContext.getBean("factoryBean"));
 
@@ -39,7 +40,7 @@ public class FactoryBeanTest implements FactoryBean<Student> {
         System.out.println(student);
         System.out.println(student.getAddress());
 
-        System.out.println(student.getAddress());
+        System.out.println(student.getAddress());*/
 
     }
 }
