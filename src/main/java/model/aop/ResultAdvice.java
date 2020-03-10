@@ -16,6 +16,6 @@ public class ResultAdvice implements AfterReturningAdvice {
         System.out.println("objects:"+objects);
         System.out.println("Object:"+o);
         System.out.println("Object:"+o1);
-        System.out.println("========afterReturning======");
+        System.out.println("========afterReturning======\n");
     }
 }

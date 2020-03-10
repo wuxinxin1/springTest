@@ -11,11 +11,24 @@
     <bean id="resultAdvice" class="model.aop.ResultAdvice"/>
 
 
-    <!--定义两个advisor  其实就是切点-->
-    <bean id="argsRegexpMethodPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-        <property name="advice" ref="logArgsAdvice"/>
-        <property name="pattern" value="* mode.aop.*.*(..)"/>
-    </bean>
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <!--设置代理接口-->
+            <list>
+                <value>model.aop.UserService</value>
+            </list>
+        </property>
 
+        <!--设置代理对象-->
+        <property name="target" ref="userService"/>
+
+        <!--拦截器-->
+        <property name="interceptorNames">
+            <list>
+                <value>logArgsAdvice</value>
+                <value>resultAdvice</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>
