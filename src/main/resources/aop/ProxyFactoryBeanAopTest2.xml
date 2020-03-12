@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注册被代理对象-->
+    <bean id="userService" class="model.aop.UserServiceImpl"/>
+
+    <!--注册advice 通知-->
+    <bean id="logArgsAdvice" class="model.aop.LogArgsAdvice"/>
+    <bean id="resultAdvice" class="model.aop.ResultAdvice"/>
+
+
+    <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="logArgsAdvice"/>
+        <property name="mappedNames" value="queryUser"/>
+    </bean>
+
+
+    <bean id="userServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <!--设置代理接口-->
+            <list>
+                <value>model.aop.UserService</value>
+            </list>
+        </property>
+
+        <!--设置代理对象-->
+        <property name="target" ref="userService"/>
+
+        <!--拦截器-->
+        <property name="interceptorNames">
+            <list>
+               <value>logArgsAdviceAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

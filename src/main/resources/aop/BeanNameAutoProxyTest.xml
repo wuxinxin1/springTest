@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注册被代理对象-->
+    <bean id="userService" class="model.aop.UserServiceImpl"/>
+
+    <bean id="orderService" class="model.aop.OrderServiceImpl"/>
+
+    <!--注册advice 通知-->
+    <bean id="logArgsAdvice" class="model.aop.LogArgsAdvice"/>
+    <bean id="resultAdvice" class="model.aop.ResultAdvice"/>
+
+
+    <!--根据方法名进去定位，来定位哪些方法要进行增强，当然前提是这个方法的类是个代理类-->
+   <!-- <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="logArgsAdvice"/>
+        <property name="mappedNames" value="queryUser,queryOrder"/>
+    </bean>-->
+
+    <!--使用正则表达式来匹配哪些方法需要增强，但是前提还是要是个代理对象-->
+    <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="logArgsAdvice"/>
+        <property name="pattern" value="model.aop.OrderServiceImpl.creat.*"/>
+    </bean>
+
+
+    <!--BeanNameAutoProxyCreator和ProxyFactoryBean不同
+      1.不需要配置 proxyInterfaces和 target，因为这个不是针对一个类或者对象做处理的
+
+    -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+
+        <!--拦截器-->
+        <property name="interceptorNames">
+            <list>
+               <value>logArgsAdviceAdvisor</value>
+            </list>
+        </property>
+
+        <!--指定哪些bean生成代理对象-->
+        <property name="beanNames" value="*"/>
+    </bean>
+
+</beans>

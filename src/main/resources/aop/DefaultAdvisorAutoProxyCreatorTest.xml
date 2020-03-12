@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注册被代理对象-->
+    <bean id="userService" class="model.aop.UserServiceImpl"/>
+
+    <bean id="orderService" class="model.aop.OrderServiceImpl"/>
+
+    <!--注册advice 通知-->
+    <bean id="logArgsAdvice" class="model.aop.LogArgsAdvice"/>
+    <bean id="resultAdvice" class="model.aop.ResultAdvice"/>
+
+    <!--使用正则表达式来匹配哪些方法需要增强，但是前提还是要是个代理对象-->
+    <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="logArgsAdvice"/>
+        <property name="pattern" value="model.aop.*.creat.*"/>
+    </bean>
+
+
+    <!--
+      1.DefaultAdvisorAutoProxyCreator不需要显示指定切入点，直接使用所有接入点，也不用指定生成代理的beanNames,默认生成容器中的bean都生成代理对象
+      2.DefaultAdvisorAutoProxyCreator生成代理对象根据Advisor匹配到的方法维度判断，BeanNameAutoProxyCreator是指定beanNames
+      3.两个都有共同点，通过匹配策略批量生成代理对象
+    -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+</beans>
