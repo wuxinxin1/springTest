@@ -14,16 +14,16 @@
 
 
     <!--根据方法名进去定位，来定位哪些方法要进行增强，当然前提是这个方法的类是个代理类-->
-   <!-- <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+    <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
         <property name="advice" ref="logArgsAdvice"/>
         <property name="mappedNames" value="queryUser,queryOrder"/>
-    </bean>-->
+    </bean>
 
     <!--使用正则表达式来匹配哪些方法需要增强，但是前提还是要是个代理对象-->
-    <bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <!--<bean id="logArgsAdviceAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
         <property name="advice" ref="logArgsAdvice"/>
         <property name="pattern" value="model.aop.OrderServiceImpl.creat.*"/>
-    </bean>
+    </bean>-->
 
 
     <!--BeanNameAutoProxyCreator和ProxyFactoryBean不同

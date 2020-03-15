@@ -16,4 +16,8 @@ public class Advices {
         System.out.println("===advice111===");
     }
 
+    public void advice2(){
+        System.out.println("===advice222===");
+    }
+
 }

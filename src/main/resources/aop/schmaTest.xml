@@ -19,6 +19,7 @@
         <!--配置通知-->
         <aop:aspect ref="advices" >
            <aop:before method="advice1" pointcut-ref="servicePoint"/>
+            <aop:after method="advice2" pointcut-ref="servicePoint"/>
         </aop:aspect>
     </aop:config>
 

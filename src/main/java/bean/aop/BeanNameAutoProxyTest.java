@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * BeanNameAutoProxy 方式配置生成代理，匹配beanName自动生成代理
  *
+ *  1.mappedNames这个注入的属性，其实就是为PointCut赋值，使用了默认的{@link org.springframework.aop.support.NameMatchMethodPointcut}
  */
 public class BeanNameAutoProxyTest {
 

@@ -3,6 +3,7 @@ package bean.aop;
 import model.aop.OrderService;
 import model.aop.UserService;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
+import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -17,6 +18,8 @@ public class AspectjTest {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("aop/AspectjTest.xml");
 
         UserService userService = (UserService)classPathXmlApplicationContext.getBean("userService");
+
+        System.out.println(userService);
 
         userService.createUser("aa");
 
